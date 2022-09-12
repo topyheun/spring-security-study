@@ -1,0 +1,8 @@
+server:
+  port: 8070
+
+spring:
+  security:
+    user:
+      name: user
+      password: 1111
