@@ -15,4 +15,9 @@ public class SecurityController {
     public String loginPage() {
         return "loginPage";
     }
+
+    @GetMapping("/test")
+    public String test() {
+        return "logout 됐을 때 출력";
+    }
 }

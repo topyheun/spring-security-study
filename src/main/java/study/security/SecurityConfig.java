@@ -26,28 +26,14 @@ public class SecurityConfig {
         http
                 .authorizeRequests()
                 .anyRequest().authenticated();
+
         http
-                .formLogin()
-                .loginPage("/loginPage")
-                .defaultSuccessUrl("/")
-                .failureUrl("/login")
-                .usernameParameter("userId")
-                .passwordParameter("passwd")
-                .loginProcessingUrl("/login_proc")
-                .successHandler(new AuthenticationSuccessHandler() {
-                    @Override
-                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-                        System.out.println("authentication = " + authentication.getName());
-                    }
-                })
-                .failureHandler(new AuthenticationFailureHandler() {
-                    @Override
-                    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-                        System.out.println("exception = " + exception.getMessage());
-                        response.sendRedirect("/login");
-                    }
-                })
-                .permitAll();
+                .formLogin();
+
+        http
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/test");
 
         return http.build();
     }
